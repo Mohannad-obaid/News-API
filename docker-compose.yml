@@ -1,4 +1,19 @@
-FROM ubuntu:latest
-LABEL authors="Dell"
+services:
+  mongodb:
+    image: mongo:7.0.2
+    container_name: news-api-database-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_db:/data/db
 
-ENTRYPOINT ["top", "-b"]
+  adminer:
+    image: adminer
+    container_name: news-api-database-adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  mongo_db:
