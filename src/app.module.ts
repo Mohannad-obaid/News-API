@@ -5,6 +5,7 @@ import { MongoModule } from './config/mongodb.config';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_PIPE } from '@nestjs/core';
+import { CategoriesModule } from './modules/categories/categories.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { APP_PIPE } from '@nestjs/core';
     MongoModule,
     UserModule,
     AuthModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [{ provide: APP_PIPE, useClass: ValidationPipe }],
