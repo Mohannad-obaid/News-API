@@ -58,10 +58,6 @@ export class AuthService {
     throw new UnauthorizedException('Invalid credentials');
   }
 
-  matchRoles(requiredRoles: string[], userRoles: string[]) {
-    return requiredRoles.some((role) => userRoles.includes(role));
-  }
-
   async forgotPassword(email: string) {
     // check if user exists
     const user = await this.userModel.findOne({

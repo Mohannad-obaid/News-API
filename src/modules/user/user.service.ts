@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { User } from './schema/user.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -33,7 +37,7 @@ export class UserService {
   async register(body: SignUpDto) {
     const isUserExist: boolean = await this.checkUserExist(body.email);
     if (isUserExist) {
-      throw new NotFoundException('User already exists');
+      throw new ConflictException('User already exists');
     }
 
     const user = {

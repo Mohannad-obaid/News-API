@@ -6,6 +6,9 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_PIPE } from '@nestjs/core';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { NewsModule } from './modules/news/news.module';
+import { AdsModule } from './modules/ads/ads.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -17,8 +20,11 @@ import { CategoriesModule } from './modules/categories/categories.module';
     UserModule,
     AuthModule,
     CategoriesModule,
+    NewsModule,
+    AdsModule,
+    CommonModule,
   ],
   controllers: [],
-  providers: [{ provide: APP_PIPE, useClass: ValidationPipe }],
+  providers: [],
 })
 export class AppModule {}

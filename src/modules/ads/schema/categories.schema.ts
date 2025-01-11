@@ -1,24 +1,27 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ timestamps: true })
-export class Category {
-  @Prop({
-    required: true,
-    minlength: 3,
-    maxlength: 15,
-    trim: true,
-    unique: [true, 'Category name must be unique'],
-  })
-  name: string;
+export class Ad {
+  @Prop({ required: true, trim: true })
+  title: string;
 
-  @Prop({ default: null })
-  description?: string;
+  @Prop({ required: true, trim: true })
+  description: string;
 
-  @Prop({ default: 'default.png' })
-  image?: string;
+  @Prop({ required: true })
+  imageUrl: string;
+
+  @Prop({ required: true })
+  redirectUrl: string;
 
   @Prop({ default: true })
-  isActive?: boolean;
+  isActive: boolean;
+
+  @Prop({ type: Date, required: true })
+  startDate: Date;
+
+  @Prop({ type: Date, required: true })
+  endDate: Date;
 }
 
-export const CategoriesSchema = SchemaFactory.createForClass(Category);
+export const AdSchema = SchemaFactory.createForClass(Ad);

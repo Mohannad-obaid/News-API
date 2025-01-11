@@ -2,25 +2,42 @@ import {
   IsString,
   IsOptional,
   IsBoolean,
+  IsArray,
   IsNotEmpty,
-  Length,
+  IsMongoId,
+  Validate,
 } from 'class-validator';
+import { IsUserExists } from '../../../common/validator/is-user-exists.validator';
+import { DoCategoriesExist } from '../../../common/validator/is-categories-exist.validator';
 
-export class CreateCategoryDto {
+export class CreateNewsDto {
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  readonly title: string;
 
-  @IsOptional()
   @IsString()
-  @Length(3, 255)
-  readonly description?: string;
+  @IsNotEmpty()
+  readonly content: string;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
+  readonly summary?: string;
+
+  @IsString()
+  @IsOptional()
   readonly image?: string;
 
-  @IsOptional()
+  @IsMongoId()
+  @IsNotEmpty()
+  //@Validate(DoCategoriesExist)
+  readonly category: string;
+
+  @IsMongoId()
+  @IsNotEmpty()
+  //@Validate(IsUserExists)
+  readonly author: string;
+
   @IsBoolean()
-  readonly isActive?: boolean;
+  @IsOptional()
+  readonly isPublished?: boolean;
 }

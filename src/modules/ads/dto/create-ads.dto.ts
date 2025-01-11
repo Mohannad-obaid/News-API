@@ -1,26 +1,36 @@
 import {
   IsString,
-  IsOptional,
   IsBoolean,
+  IsOptional,
+  IsUrl,
+  IsDateString,
   IsNotEmpty,
-  Length,
 } from 'class-validator';
 
-export class CreateCategoryDto {
+export class CreateAdDto {
   @IsString()
+  title: string;
+
+  @IsString()
+  description: string;
+
+  @IsUrl()
   @IsNotEmpty()
-  readonly name: string;
+  imageUrl: string;
 
-  @IsOptional()
-  @IsString()
-  @Length(3, 255)
-  readonly description?: string;
+  @IsUrl()
+  @IsNotEmpty()
+  redirectUrl: string;
 
-  @IsOptional()
-  @IsString()
-  readonly image?: string;
-
-  @IsOptional()
   @IsBoolean()
-  readonly isActive?: boolean;
+  @IsOptional()
+  isActive?: boolean;
+
+  @IsDateString()
+  @IsNotEmpty()
+  startDate: Date;
+
+  @IsDateString()
+  @IsNotEmpty()
+  endDate: Date;
 }
